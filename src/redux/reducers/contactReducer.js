@@ -1,6 +1,6 @@
 const initialState = [
-  { id: 0, name: "Raman Sharma", email: "email@email.com", phone: 1234567890 },
-  { id: 1, name: "Test Name", email: "test@test.com", phone: 4567891230 },
+  { id: 0, name: "Raman Sharma", salary: "50000", leaves: 4 },
+  { id: 1, name: "Test Name", salary: "60000", leaves: 5 },
 ];
 
 export const contactReducer = (state = initialState, action) => {
@@ -23,7 +23,7 @@ export const contactReducer = (state = initialState, action) => {
       state = contactUpdate;
       return state;
     case "RESET_CONTACT":
-      state = [{ name: null, email: null, phone: null }];
+      state = [{ name: null, salary: null, leaves: null }];
       return state;
     default:
       return state;

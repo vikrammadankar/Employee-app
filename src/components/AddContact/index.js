@@ -5,35 +5,35 @@ import { toast } from "react-toastify";
 
 const AddPost = ({ contacts, addContact }) => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [salary, setSalary] = useState("");
+  const [leaves, setLeaves] = useState("");
 
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const checkContactEmailExists = contacts.filter((contact) =>
-      contact.email === email ? contact : null
+    const checkContactSalaryExists = contacts.filter((contact) =>
+      contact.salary === salary ? contact : null
     );
     const checkContactPhoneExists = contacts.filter((contact) =>
-      contact.phone === phone ? contact : null
+      contact.leaves === leaves ? contact : null
     );
 
-    if (!email || !name || !phone) {
+    if (!salary || !name || !leaves) {
       return toast.warning("Please fill in all fields!!");
     }
-    if (checkContactEmailExists.length > 0) {
-      return toast.error("This email already exists!!");
+    if (checkContactSalaryExists.length > 0) {
+      return toast.error("This salary already exists!!");
     }
     if (checkContactPhoneExists.length > 0) {
-      return toast.error("This phone number already exists!!");
+      return toast.error("This leaves number already exists!!");
     }
 
     const data = {
       id: contacts.length > 0 ? contacts[contacts.length - 1].id + 1 : 0,
-      email,
+      salary,
       name,
-      phone,
+      leaves,
     };
 
     addContact(data);
@@ -59,19 +59,19 @@ const AddPost = ({ contacts, addContact }) => {
             <div className="form-group">
               <input
                 className="form-control"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="salary"
+                placeholder="Salary"
+                value={salary}
+                onChange={(e) => setSalary(e.target.value)}
               />
             </div>
             <div className="form-group">
               <input
                 className="form-control"
                 type="number"
-                placeholder="Phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Leaves"
+                value={leaves}
+                onChange={(e) => setLeaves(e.target.value)}
               />
             </div>
             <div className="form-group">
